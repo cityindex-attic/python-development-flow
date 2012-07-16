@@ -4,6 +4,10 @@ httpbin(1): HTTP Request & Response Service
 Freely hosted in [HTTP](http://httpbin.org) &
 [HTTPS](https://httpbin.org) flavors.
 
+## Deploy on Stackato
+
+     stackato push -n
+
 ## ENDPOINTS
 
 - [`/`](http://httpbin.org/) This page.
