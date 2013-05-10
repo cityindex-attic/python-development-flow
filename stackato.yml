@@ -1,0 +1,10 @@
+name: httpbin
+framework:
+  type: python
+
+processes:
+  web: python run_httpbin.py $PORT
+
+requirements:
+  staging:
+    ubuntu: [libevent-dev]
