@@ -93,7 +93,6 @@ echo "stackato:$(stackato --version)"
 echo "Clean up..."
 sudo apt-get autoremove -y | tail -n 2 | indent
 rm -f /home/vagrant/postinstall.sh
-rm -f /tmp/VBoxGuestAdditions_4.2.10.iso
 
 echo "Copying host source files into place"
 rsync -a --exclude='.git*' --exclude='.vagrant' --exclude='.DS_Store' /vagrant/ /home/vagrant/
