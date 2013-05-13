@@ -90,11 +90,6 @@ if [ ! -f /usr/bin/stackato ]; then
 fi
 echo "stackato:$(stackato --version)"
 
-if [ ! -f /usr/bin/unison ]; then
-  sudo apt-get install unison -y
-fi
-echo "unison:  $(unison -version)"
-
 echo "Clean up..."
 sudo apt-get autoremove -y | tail -n 2 | indent
 rm -f /home/vagrant/postinstall.sh
