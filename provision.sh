@@ -72,6 +72,17 @@ if [[ ! "$(node --version)" =~ "v0.10" ]]; then
 fi
 echo "node:    $(node -v)"
 
+if [[ ! "$(pip --version)" =~ "pip 1.0" ]]; then
+  echo "Installing Python development tooling"
+  sudo apt-get install python-dev -y
+  sudo apt-get install python-pip -y
+  sudo pip install virtualenv
+  sudo pip install httpie
+  echo "Installing libevent-dev package"
+  sudo apt-get install libevent-dev -y
+fi
+echo "pip:    $(pip --version)"
+
 if [ ! -f /usr/local/ti-debug/bin/dbgp ]; then
   echo "Installing ti-debug"
   git clone https://github.com/dpb587/ti-debug /usr/local/ti-debug
