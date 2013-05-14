@@ -56,6 +56,9 @@ echo "ruby:    $(ruby --version)"
 if [[ "$(gem query -n bundler -d | wc -l)" =~ "1" ]]; then
   sudo gem install bundle --no-ri --no-rdoc
 fi
+if [[ "$(gem query -n rake -d | wc -l)" =~ "1" ]]; then
+  sudo gem install rake --no-ri --no-rdoc
+fi
 
 if [ ! -f /usr/bin/git ]; then
   echo "Installing git"
@@ -71,6 +74,17 @@ if [[ ! "$(node --version)" =~ "v0.10" ]]; then
   sudo apt-get install nodejs npm -y
 fi
 echo "node:    $(node -v)"
+
+if [[ ! "$(pip --version)" =~ "pip 1.0" ]]; then
+  echo "Installing Python development tooling"
+  sudo apt-get install python-dev -y
+  sudo apt-get install python-pip -y
+  sudo pip install virtualenv
+  sudo pip install httpie
+  echo "Installing libevent-dev package"
+  sudo apt-get install libevent-dev -y
+fi
+echo "pip:    $(pip --version)"
 
 if [ ! -f /usr/local/ti-debug/bin/dbgp ]; then
   echo "Installing ti-debug"
@@ -90,15 +104,9 @@ if [ ! -f /usr/bin/stackato ]; then
 fi
 echo "stackato:$(stackato --version)"
 
-if [ ! -f /usr/bin/unison ]; then
-  sudo apt-get install unison -y
-fi
-echo "unison:  $(unison -version)"
-
 echo "Clean up..."
 sudo apt-get autoremove -y | tail -n 2 | indent
 rm -f /home/vagrant/postinstall.sh
-rm -f /tmp/VBoxGuestAdditions_4.2.10.iso
 
 echo "Copying host source files into place"
 rsync -a --exclude='.git*' --exclude='.vagrant' --exclude='.DS_Store' /vagrant/ /home/vagrant/
