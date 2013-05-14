@@ -56,6 +56,9 @@ echo "ruby:    $(ruby --version)"
 if [[ "$(gem query -n bundler -d | wc -l)" =~ "1" ]]; then
   sudo gem install bundle --no-ri --no-rdoc
 fi
+if [[ "$(gem query -n rake -d | wc -l)" =~ "1" ]]; then
+  sudo gem install rake --no-ri --no-rdoc
+fi
 
 if [ ! -f /usr/bin/git ]; then
   echo "Installing git"

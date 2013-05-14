@@ -1,3 +1,4 @@
 .workon
 .epio-app
 .vagrant/
+/vendor
