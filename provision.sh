@@ -86,14 +86,11 @@ if [[ ! "$(pip --version)" =~ "pip 1.0" ]]; then
 fi
 echo "pip:    $(pip --version)"
 
-if [ ! -f /usr/local/ti-debug/bin/dbgp ]; then
+if [ ! -f /usr/bin/ti-debug ]; then
   echo "Installing ti-debug"
-  git clone https://github.com/dpb587/ti-debug /usr/local/ti-debug
-  pushd /usr/local/ti-debug
-  npm install
-  popd
+  npm install --global 'git://github.com/dpb587/ti-debug.git#8588670a916e660de57f2a4fb4b8d420521c6b90'
 fi
-echo "ti-debug:$(/usr/local/ti-debug/bin/dbgp --version)"
+echo "ti-debug:$(/usr/bin/ti-debug --version)"
 
 if [ ! -f /usr/bin/stackato ]; then
     sudo curl -k --location -o /tmp/stackato.zip http://downloads.activestate.com/stackato/client/v1.7.2/stackato-1.7.2-linux-glibc2.3-x86_64.zip 
